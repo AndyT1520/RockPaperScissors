@@ -1,0 +1,153 @@
+
+/* make everything fit */
+body{
+background-color: rgb(255, 239, 225);
+font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    padding-top: 10px;
+}
+
+/* Text */ 
+h1{
+    font-size: 60px;
+    color: #DC0000;
+}
+ h2{
+    font-size: 40px;
+ }
+
+ h3{
+     font-size: 20px;
+     margin: 10px;
+ }
+
+/* Button styles */
+.buttonChoices{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 30px;
+    transition-duration: 0.3s;
+}
+
+/* Rock, Paper, and Scissors size */
+img{
+    height: 100%;
+    width: 50%;
+}
+
+/* Adding styles to button and hover effect */
+#rockBtn,
+#paperBtn,
+#scissorsBtn{
+    border-radius: 20px;
+    box-shadow: 0px 0px 5px 5px;
+    margin: 20px;
+    cursor: pointer;
+}
+
+.buttonChoices :hover{
+    background-color: rgb(255, 122, 61);
+}
+
+/* Player/Computer Health bars */
+.containerHealth{
+    display: flex;
+    flex-direction: row;
+    gap: 120px;
+    margin: 20px;
+}
+
+.health-container-player,
+.health-container-computer{
+    display: flex;
+    flex-direction: row;
+    border: 1px solid #888;
+    border-top-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    width: 300px;
+    padding: 0.5em 0 0.2em 0.2em;
+    margin-bottom: 1em;
+    box-shadow: 0px 0px 3px 2px #888, -1px 3px 5px 3px rgb(255 209 179);
+}
+
+.player-health{
+    margin-left: 20px;
+    text-align: center;
+}
+.computer-health{
+    margin-left:20px;
+    text-align: center;
+}
+
+.player-health::before{
+    content: attr(value)'/'attr(max);
+    position: relative;
+    bottom: 0.5em;
+}
+.computer-health::before {
+    content: attr(value)'/'attr(max);
+    position: relative;
+    bottom: 0.5rem;
+}
+
+.health-container-text {
+    display: inline-block;
+    position: relative;
+    margin: 0;
+    bottom: 0rem;
+}
+
+/* Result Box */
+.box-result{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    border: 1px solid #888;
+    border-top-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    box-shadow: 0px 0px 3px 2px #888, -1px 3px 5px 3px rgb(255 209 179);;
+    width: 50%;
+    height: 7em;
+}
+
+.result-text{
+    position: relative;
+    height: 100;
+    width: 50%;
+}
+
+.result-text h1{
+    margin: 0;
+}
+
+.result-text h2 {
+    margin: 0.5em 0;
+}
+
+.result-text h3 {
+    position: absolute;
+    margin: 0.5em;
+    left: 0;
+    right: 0;
+}
+
+/* Reset button */
+.resetBtn{
+    display: flex;
+}
+
+#reset{
+    display: flex;
+    flex-direction: column;
+    border-radius: 20px;
+    margin: 20px;
+}
+
+

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Scissors</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Game of Rock Paper Scissors!</h1>
+        <h2>Choose Your Weapon</h2>
+        <h3>First to make their opponent feint wins!</h3>
+    
+
+        <!--Player button choices-->
+        <div class="buttonChoices">
+            <button id="rockBtn">
+                <img src="./images/rock.jpg" alt="Rock">
+            </button>
+            <button id="paperBtn">
+            <img src="./images/paper.jpg" alt="Paper">
+            </button>
+            <button id="scissorsBtn">
+                <img src="./images/scissors.jpg" alt="Scissors">
+            </button>
+        </div>
+
+        <!--Player/Computer Health Bars-->
+        <div class="containerHealth">
+            <div class="health-container-player">
+                <p class="health-container-text">Player HP:</p>
+            <progress class="player-health" value="100" max="100"> == $0
+            </div>
+
+            <div class="health-container-computer">
+                <p class="health-container-text">Computer HP:</p>
+            <progress class="computer-health" value="100" max="100"> == $0
+            </div>
+        </div>
+        <div class="box-result">
+            <div class="result-text">
+                <h2></h2>
+                <h1></h1>
+                <h3></h3>
+            </div>
+        </div>
+
+        <div class="resetBtn">
+            <button id="reset">Play Again!</button>
+        </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
