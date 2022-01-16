@@ -1,103 +1,99 @@
-const buttons = document.querySelectorAll("div.buttonChoices button");
-const resetBtn = Array.from(document.querySelector("#reset"));
-const overallResult = Array.from(document.querySelectorAll(".box-result h2"));
-const roundNum = Array.from(document.querySelectorAll(".box-result h1"));
-const boxResult = Array.from(document.querySelectorAll(".box-result h3"));
-const playerHealth = Array.from(document.querySelectorAll(".player-health"));
-const computerHealth = Array.from(document.querySelectorAll(".computer-health"));
+var computerChoice;
+var ranNum;
+var result;
 
-let computerChoice = [{choice: 'Rock', value: 0}, {choice: 'Paper', value: 1}, {choice: 'Scissors', value: 2}];
-let playerChoice = '';
+const displayResult = document.getElementById('result');
+const resetBtn = document.getElementById('reset');
+const playerHealth = document.querySelector('.player-health');
+const computerHealth = document.querySelector('.computer-health');
+const rock_div = document.getElementById('rock');
+const paper_div = document.getElementById('paper');
+const scissors_div = document.getElementById('scissors');
+const roundNum = document.querySelector('.round-number');
+const result_id = document.querySelector('.result-text');
+const overall = document.querySelector('.overall-result');
+
 let round = 1;
+let playerChoice = '';
 
-buttons.addEventListener('click', playerChoice);
-
-function computerPlay(){
-    let result = computerChoice[Math.floor(Math.random() * computerChoice.length)];
-    return result;
+function getComputerChoice() {
+    const compChoice = ['r', 'p', 's'];
+    const randomNumber = Math.floor(Math.random() * 3);
+    return compChoice[randomNumber];
 }
 
-// Game
-function playGame(e){
-    if (playerHealth.value <= 0 || computerHealth.value <= 0){
-        return;
-    }
-    selectChoice(e);
-    if (playerHealth.value !== 0 && computerHealth.value !== 0){
-        playRound();
-    }
-
-    if(computerHealth, value === 0){
-        overallResult.textContent = "You Won!";
-    }
-    if(playerHealth, value === 0){
-        overallResult.textContent = "You Lost";
-    }
-}
-
-function playRound(){
+function game(playerChoice){
+    const computerChoice = getComputerChoice();
     roundNum.textContent = `Round ${round}`;
-
-    if(computerPlay === 'Rock'){
-        switch (playerChoice){
-            case 'Rock':
-            showDrawResult(boxResult);
-            break;
-            case 'Paper':
-            showWinResult(boxResult);
-            damageHP(computerHealth, 20);
-            break;
-            case 'Scissors':
-            showLoseResult(boxResult);
-            damageHP(playerHealth, 20);
-        }
-    }else if(computerPlay === 'Paper'){
-        switch (playerChoice){
-            case 'Paper':
-                showDrawResult(boxResult);
-                break;
-            case 'Scissors':
-                showWinResult(boxResult);
-                damageHP(computerHealth, 20);
-                break;
-            case 'Rock':
-                showLoseResult(boxResult);
-                damageHP(playerHealth, 20);
-        }
-    }else if(computerPlay === 'Scissors'){
-        switch (playerChoice){
-            case 'Scissors':
-                showDrawResult(boxResult);
-                break;
-            case 'Rock':
-                showWinResult(boxResult);
-                damageHP(computerHealth, 20);
-                break;
-            case 'Paper':
-                showLoseResult(boxResult);
-                damageHP(playerHealth, 20);
-                break;
-        }
+    switch(playerChoice + computerChoice){
+        case "rs":
+        case "pr":
+        case "sp":
+        winResult(playerChoice, computerChoice);
+        damageHP(computerHealth, 20);
+        break;
+        case "rp":
+        case "ps":
+        case "sr":
+        loseResult(playerChoice, computerChoice);
+        damageHP(playerHealth, 20);
+        break;
+        case "rr":
+        case "ss":
+        case "pp":
+        drawResult(playerChoice, computerChoice);
+        break;
     }
 }
 
-function damageHP(HP, damage){
-    HP.value -= damage;
-    return HP;
+
+function convertToWord(letter){
+    if (letter === "r") return "Rock";
+    if (letter === "p") return "Paper";
+    return "Scissors";
 }
 
-function showWinResult(output){
-    output.textContent =   `You Win! ${playerChoice} beats ${computerChoice}`;
+function main() {
+    rock_div.addEventListener('click', function(){
+        game('r');
+    })
+    
+    paper_div.addEventListener('click', function(){
+        game('p');
+    })
+    
+    scissors_div.addEventListener('click', function(){
+        game('s');
+    })
+}
+
+function playGame(){
+    game();
+    if (computerHealth.value == 0) {
+        overall.innerHTML = "You Won the game!";
+    }
+    else if (playerHealth.value == 0) {
+        overall.innerHTML = "You lost the game!";
+    }
+}
+
+function damageHP(Health, damage){
+    Health.value -= damage;
+    return Health;
+}
+
+function winResult(playerChoice, computerChoice){
+        round++;
+        result_id.innerHTML = convertToWord(playerChoice) + " beats " + convertToWord(computerChoice), "you win!";
+    }
+
+function loseResult(playerChoice, computerChoice){
     round++;
+    result_id.innerHTML = convertToWord(playerChoice) + " loses to " + convertToWord(computerChoice), " you lost!";
 }
 
-function showLoseResult(output){
-    output.textContent = `You Lose! ${computerChoice} beats ${playerChoice}`;
+function drawResult(playerChoice, computerChoice){
     round++;
+    result_id.innerHTML = "It's a draw!";
 }
-
-function showDrawResult(output){
-    output.textContent = `It's a Draw! Both of you chose ${playerChoice}`;
-    round++;
-}
-
+main();

@@ -118,18 +118,23 @@ img{
 }
 
 .result-text{
-    position: relative;
     height: 100;
-    width: 50%;
+    width: 100%;
+    text-align: center;
+    font-size: 30px;
 }
 
 .result-text h1{
     margin: 0;
+    font-size: 10px;
+    display: flex;
+    position: relative;
 }
 
 .result-text h2 {
     margin: 0.5em 0;
 }
+
 
 .result-text h3 {
     position: absolute;
